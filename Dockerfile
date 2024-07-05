@@ -3,8 +3,7 @@ FROM ubuntu:20.04
 
 # Evitar interacción al instalar paquetes
 ENV DEBIAN_FRONTEND=noninteractive
-ENV LOBBY_URL=https//www.google.com
-
+ENV LOBBY_URL=https://www.google.com
 
 # Actualizar el sistema e instalar dependencias
 RUN apt-get update && apt-get install -y \
@@ -21,5 +20,4 @@ USER firefoxuser
 WORKDIR /home/firefoxuser
 
 # Comando para ejecutar Firefox
-#CMD ["firefox --kiosk https://www.google.com "]
-CMD ["firefox", "--kiosk", $LOBBY_URL]
+CMD firefox --kiosk $LOBBY_URL
