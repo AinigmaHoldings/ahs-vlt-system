@@ -17,6 +17,22 @@ create_script_file() {
     echo "Script created successfully at: $FILE"
 }
 
+create_script_file_sudo() {
+    local FILE="$1"
+    local SCRIPT_CONTENT="$2"
+
+    # Create the directory if it doesn't exist
+    #mkdir -p "$(dirname "$FILE")"
+
+    # Write the content to the file
+    sudo echo "$SCRIPT_CONTENT" > "$FILE"
+
+    # Make the script executable
+    #chmod +x "$FILE"
+
+    echo "Script created successfully at: $FILE"
+}
+
 # Define the file paths and script contents
 FILE1="/home/${USER}/vlt/vltStart.sh"
 echo $FILE1
@@ -127,7 +143,7 @@ create_script_file "$FILE3" "$SCRIPT_CONTENT3"
 echo "--------------------------------"
 
 # Create second script file
-create_script_file "$FILE4" "$SCRIPT_CONTENT4"
+create_script_file_sudo "$FILE4" "$SCRIPT_CONTENT4"
 
 # Print separator for clarity
 echo "--------------------------------"
