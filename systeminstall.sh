@@ -61,7 +61,7 @@ CMD firefox --kiosk $LOBBY_URL
 
 "
 ##########SYSTEM FILES#################
-FILE4="/home/${USER}/vlt/sample.service"
+FILE4="/etc/systemd/system/vlt.service"
 echo $FILE4
 SCRIPT_CONTENT4="[Unit]
 Description=test service
