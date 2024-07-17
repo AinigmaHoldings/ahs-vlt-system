@@ -22,16 +22,17 @@ create_script_file_sudo() {
     local SCRIPT_CONTENT="$2"
 
     # Create the directory if it doesn't exist
-    #mkdir -p "$(dirname "$FILE")"
+    sudo mkdir -p "$(dirname "$FILE")"
 
-    # Write the content to the file
-    sudo echo "$SCRIPT_CONTENT" > "$FILE"
+    # Write the content to the file using sudo tee
+    echo "$SCRIPT_CONTENT" | sudo tee "$FILE" > /dev/null
 
     # Make the script executable
-    #chmod +x "$FILE"
+    sudo chmod +x "$FILE"
 
     echo "Script created successfully at: $FILE"
 }
+
 
 # Define the file paths and script contents
 FILE1="/home/${USER}/vlt/vltStart.sh"
