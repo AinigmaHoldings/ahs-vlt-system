@@ -74,7 +74,7 @@ USER firefoxuser
 WORKDIR /home/firefoxuser
 
 # Comando para ejecutar Firefox
-CMD firefox --kiosk $LOBBY_URL
+CMD firefox --kiosk \$LOBBY_URL
 
 "
 ##########SYSTEM FILES#################
