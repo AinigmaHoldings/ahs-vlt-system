@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  node_exporter:
+    image: quay.io/prometheus/node-exporter:latest
+    container_name: node_exporter
+    command:
+      - '--path.rootfs=/host'
+    network_mode: host
+    pid: host
+    restart: unless-stopped
+    volumes:
+      - '/:/host:ro,rslave'
+    ports:
+      - "9100:9100/tcp"
+
+  ahsvlt:
+    image: ahsvlt
+    container_name: ahsvlt_container
+    environment:
+      - DISPLAY=${DISPLAY}
+      - LOBBY_URL=https://main.d1z9tjq0zx0et3.amplifyapp.com/
+    volumes:
+      - '/tmp/.X11-unix:/tmp/.X11-unix'
+    command: []
+    networks:
+      - default
+    restart: 'always'   # Adjust restart policy if necessary
