@@ -1,6 +1,22 @@
 #!/bin/bash
 # Create executable files for systemd.
 # Function to create script file
+
+CONFIG_FILE="config/config.cfg"
+
+# Extract the serial number of the baseboard
+SERIAL_NUMBER=$(sudo dmidecode -t baseboard | grep "Serial Number:" | awk -F: '{print $2}' | xargs)
+
+# Check if a serial number was found
+if [ -z "$SERIAL_NUMBER" ]; then
+    echo "Serial number not found."
+    exit 1
+fi
+# Update vltSystemId in the config file
+sed -i "s/^vltSystemId=.*/vltSystemId=$SERIAL_NUMBER/" "$CONFIG_FILE"
+
+echo "Serial number written in config file"
+
 create_script_file() {
     local FILE="$1"
     local SCRIPT_CONTENT="$2"
@@ -35,10 +51,14 @@ create_script_file_sudo() {
 
 
 # Define the file paths and script contents
+# Read urlVlt from config file
+#####--------
+urlVlt=$(grep '^urlVlt=' "$CONFIG_FILE" | cut -d'=' -f2-)
+#####--------
 FILE1="/home/${USER}/vlt/vltStart.sh"
 echo $FILE1
 SCRIPT_CONTENT1="#!/bin/sh
-/usr/bin/docker run -e DISPLAY=\$DISPLAY -e LOBBY_URL=https://main.d1z9tjq0zx0et3.amplifyapp.com/ -v /tmp/.X11-unix:/tmp/.X11-unix --rm ahsvlt
+/usr/bin/docker run -e DISPLAY=\$DISPLAY -e LOBBY_URL=${urlVlt} -v /tmp/.X11-unix:/tmp/.X11-unix --rm ahsvlt
 "
 
 FILE2="/home/${USER}/vlt/printenv.sh"

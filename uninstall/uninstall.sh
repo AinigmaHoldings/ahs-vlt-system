@@ -30,8 +30,6 @@ sudo apt-get clean
 
 echo "Docker ha sido desinstalado completamente."
 
-#!/bin/bash
-
 # Eliminar la carpeta /home/${USER}/vlt/
 rm -rf /home/${USER}/vlt/
 
