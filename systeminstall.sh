@@ -101,14 +101,16 @@ CMD firefox --kiosk \$LOBBY_URL
 FILE4="/etc/systemd/system/vlt.service"
 echo $FILE4
 SCRIPT_CONTENT4="[Unit]
-Description=test service
-After=graphical.target
+Description=Docker Compose Application Service for VLT
+Requires=docker.service
+After=docker.service graphical.target
 [Service]
-WorkingDirectory=/home/${USER}/vlt
+WorkingDirectory=/home/${USER}/vlt/compose
 User=${USER}
 EnvironmentFile=/home/${USER}/environment
 Restart=always
-ExecStart=/bin/sh /home/${USER}/vlt/vltStart.sh
+ExecStart=/usr/bin/docker-compose up -d
+ExecStop=/usr/bin/docker-compose down
 [Install]
 WantedBy=default.target"
 
