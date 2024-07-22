@@ -168,7 +168,7 @@ sudo systemctl enable vlt.service
 ######################################################
 #mkdir /home/ahsvlt/.config/autostart
 
-echo "Installing VLT system and Node Exporter with docker compose...."
-cd compose/
-docker-compose up -d 
-echo "Installation succesfuly executed"
+#echo "Installing VLT system and Node Exporter with docker compose...."
+#cd compose/
+#docker-compose up -d 
+#echo "Installation succesfuly executed"
