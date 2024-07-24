@@ -5,17 +5,17 @@
 CONFIG_FILE="config/config.cfg"
 
 # Extract the serial number of the baseboard
-SERIAL_NUMBER=$(sudo dmidecode -t baseboard | grep "Serial Number:" | awk -F: '{print $2}' | xargs)
+#SERIAL_NUMBER=$(sudo dmidecode -t baseboard | grep "Serial Number:" | awk -F: '{print $2}' | xargs)
 
 # Check if a serial number was found
-if [ -z "$SERIAL_NUMBER" ]; then
-    echo "Serial number not found."
-    exit 1
-fi
+#if [ -z "$SERIAL_NUMBER" ]; then
+#    echo "Serial number not found."
+#    exit 1 ##Comment for not exiting script.
+#fi
 # Update vltSystemId in the config file
-sed -i "s/^vltSystemId=.*/vltSystemId=$SERIAL_NUMBER/" "$CONFIG_FILE"
+#sed -i "s/^vltSystemId=.*/vltSystemId=$SERIAL_NUMBER/" "$CONFIG_FILE"
 
-echo "Serial number written in config file"
+#echo "Serial number written in config file"
 
 create_script_file() {
     local FILE="$1"
@@ -105,7 +105,7 @@ Description=Docker Compose Application Service for VLT
 Requires=docker.service
 After=docker.service graphical.target
 [Service]
-WorkingDirectory=/home/${USER}/vlt/compose
+WorkingDirectory=/home/${USER}/vlt
 User=${USER}
 EnvironmentFile=/home/${USER}/environment
 Restart=always
@@ -132,7 +132,6 @@ Comment[en_US]=Giving permissions to docker for display
 Comment=Giving permissions to docker for display"
 
 FILE6="/home/${USER}/.config/autostart/printenvlocal.desktop" 
-[Desktop Entry]
 echo $FILE6
 SCRIPT_CONTENT6="[Desktop Entry]
 Type=Application
@@ -145,7 +144,70 @@ Name=PrintEnv Task for VLT Service
 Comment[en_US]=Printing Env Variables for VLT service
 Comment=Printing Env Variables for VLT service"
 
+#####################Docker compose files####################################
+FILE7="/home/${USER}/vlt/docker-compose.yml" 
+echo $FILE7
+SCRIPT_CONTENT7="version: '3.8'
 
+services:
+  node_exporter:
+    image: quay.io/prometheus/node-exporter:latest
+    container_name: node_exporter
+    command:
+      - '--path.rootfs=/host'
+    network_mode: host
+    pid: host
+    restart: unless-stopped
+    volumes:
+      - '/:/host:ro,rslave'
+    ports:
+      - "9100:9100/tcp"
+
+  ahsvlt:
+    image: ahsvlt
+    container_name: ahsvlt_container
+    environment:
+      - DISPLAY=\${DISPLAY}
+      - LOBBY_URL=${urlVlt}
+    volumes:
+      - '/tmp/.X11-unix:/tmp/.X11-unix'
+    command: []
+    networks:
+      - default
+    restart: 'always'   # Adjust restart policy if necessary
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    network_mode: host
+    volumes:
+      - './config.yml:/etc/cloudflared/config.yml'
+    entrypoint: cloudflared tunnel --config /etc/cloudflared/config.yml run --token TOKEN_FROM_CLOUDFLARED
+
+"
+
+FILE8="/home/${USER}/vlt/config.yml" 
+echo $FILE8
+SCRIPT_CONTENT8="tunnel: 995cafce-4966-4c4d-87aa-a63220432205
+ingress:
+  - hostname: vlt-lab-ec2.ainigmaim.com
+    service: http://localhost:9100
+  - hostname: ssh-vlt-lab-ec2.ainigmaim.com
+    service: ssh://localhost:22
+  - service: http_status:404 "
+
+#############################################################################
+
+# Create first script file
+create_script_file "$FILE7" "$SCRIPT_CONTENT7"
+
+# Print separator for clarity
+echo "--------------------------------"
+
+# Create second script file
+create_script_file "$FILE8" "$SCRIPT_CONTENT8"
+
+# Print separator for clarity
+echo "--------------------------------"
 
 # Create first script file
 create_script_file "$FILE1" "$SCRIPT_CONTENT1"
