@@ -27,8 +27,8 @@ echo "Enabling Docker service..."
 sudo systemctl enable docker.service
 
 # Installing docker compose
-sudo curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
+sudo curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/bin/docker-compose
+sudo chmod +x /usr/bin/docker-compose
 
 # Add the current user to the 'docker' group to manage Docker as a non-root user
 echo "Adding user to docker group..."
