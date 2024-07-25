@@ -54,6 +54,9 @@ create_script_file_sudo() {
 # Read urlVlt from config file
 #####--------
 urlVlt=$(grep '^urlVlt=' "$CONFIG_FILE" | cut -d'=' -f2-)
+vltName=$(grep '^vltName=' "$CONFIG_FILE" | cut -d'=' -f2-)
+cloudflaredtoken=$(grep '^cloudflaredtoken=' "$CONFIG_FILE" | cut -d'=' -f2-)
+cloudflaredtunnelid=$(grep '^cloudflaredtunnelid=' "$CONFIG_FILE" | cut -d'=' -f2-)
 #####--------
 FILE1="/home/${USER}/vlt/vltStart.sh"
 echo $FILE1
@@ -179,17 +182,17 @@ services:
     network_mode: host
     volumes:
       - './config.yml:/etc/cloudflared/config.yml'
-    entrypoint: cloudflared tunnel --config /etc/cloudflared/config.yml run --token TOKEN_FROM_CLOUDFLARED
+    entrypoint: cloudflared tunnel --config /etc/cloudflared/config.yml run --token $cloudflaredtoken
 
 "
 
 FILE8="/home/${USER}/vlt/config.yml" 
 echo $FILE8
-SCRIPT_CONTENT8="tunnel: 995cafce-4966-4c4d-87aa-a63220432205
+SCRIPT_CONTENT8="tunnel: $cloudflaredtunnelid
 ingress:
-  - hostname: vlt-lab-ec2.ainigmaim.com
+  - hostname: $vltName.ainigmaim.com
     service: http://localhost:9100
-  - hostname: ssh-vlt-lab-ec2.ainigmaim.com
+  - hostname: ssh-$vltName.ainigmaim.com
     service: ssh://localhost:22
   - service: http_status:404 "
 
