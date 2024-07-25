@@ -110,7 +110,6 @@ User=${USER}
 EnvironmentFile=/home/${USER}/environment
 Restart=always
 ExecStart=/usr/bin/docker-compose up -d
-ExecStop=/usr/bin/docker-compose down
 [Install]
 WantedBy=default.target"
 
