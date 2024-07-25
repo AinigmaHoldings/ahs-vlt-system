@@ -108,7 +108,6 @@ After=docker.service graphical.target
 WorkingDirectory=/home/${USER}/vlt
 User=${USER}
 EnvironmentFile=/home/${USER}/environment
-Restart=always
 ExecStart=/usr/bin/docker-compose up -d
 [Install]
 WantedBy=default.target"
