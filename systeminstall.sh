@@ -5,17 +5,15 @@
 CONFIG_FILE="config/config.cfg"
 
 # Extract the serial number of the baseboard
-#SERIAL_NUMBER=$(sudo dmidecode -t baseboard | grep "Serial Number:" | awk -F: '{print $2}' | xargs)
+SERIAL_NUMBER=$(sudo dmidecode -t baseboard | grep "Serial Number:" | awk -F: '{print $2}' | xargs)
 
 # Check if a serial number was found
-#if [ -z "$SERIAL_NUMBER" ]; then
-#    echo "Serial number not found."
-#    exit 1 ##Comment for not exiting script.
-#fi
+if [ -z "$SERIAL_NUMBER" ]; then
+    echo "Serial number not found."
+fi
 # Update vltSystemId in the config file
-#sed -i "s/^vltSystemId=.*/vltSystemId=$SERIAL_NUMBER/" "$CONFIG_FILE"
-
-#echo "Serial number written in config file"
+sed -i "s|^vltSerialBoard=[^ ]*|vltSerialBoard=${SERIAL_NUMBER}|" "$CONFIG_FILE"
+echo "Serial number written in config file"
 
 create_script_file() {
     local FILE="$1"
