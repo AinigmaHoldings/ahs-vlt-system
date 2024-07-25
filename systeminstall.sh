@@ -249,6 +249,7 @@ echo "Enabling Services in systemd"
 sudo systemctl daemon-reload
 sudo systemctl enable vlt.service
 ######################################################
+cp $CONFIG_FILE /home/${USER}/vlt/config.cfg
 #mkdir /home/ahsvlt/.config/autostart
 
 #echo "Installing VLT system and Node Exporter with docker compose...."
