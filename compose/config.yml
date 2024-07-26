@@ -1,7 +1,0 @@
-tunnel: 995cafce-4966-4c4d-87aa-a63220432205
-ingress:
-  - hostname: vlt-lab-ec2.ainigmaim.com
-    service: http://localhost:9100
-  - hostname: ssh-vlt-lab-ec2.ainigmaim.com
-    service: ssh://localhost:22
-  - service: http_status:404

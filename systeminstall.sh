@@ -56,46 +56,11 @@ vltName=$(grep '^vltName=' "$CONFIG_FILE" | cut -d'=' -f2-)
 cloudflaredtoken=$(grep '^cloudflaredtoken=' "$CONFIG_FILE" | cut -d'=' -f2-)
 cloudflaredtunnelid=$(grep '^cloudflaredtunnelid=' "$CONFIG_FILE" | cut -d'=' -f2-)
 #####--------
-FILE1="/home/${USER}/vlt/vltStart.sh"
-echo $FILE1
-SCRIPT_CONTENT1="#!/bin/sh
-/usr/bin/docker run -e DISPLAY=\$DISPLAY -e LOBBY_URL=${urlVlt} -v /tmp/.X11-unix:/tmp/.X11-unix --rm ahsvlt
-"
 
 FILE2="/home/${USER}/vlt/printenv.sh"
 echo $FILE2
 SCRIPT_CONTENT2="#!/bin/sh
 /usr/bin/printenv > /home/${USER}/environment
-
-"
-
-FILE3="/home/${USER}/vlt/Dockerfile"
-echo $FILE3
-SCRIPT_CONTENT3="
-
-# Usar una imagen base de Ubuntu
-FROM ubuntu:20.04
-
-# Evitar interacción al instalar paquetes
-ENV DEBIAN_FRONTEND=noninteractive
-ENV LOBBY_URL=https://www.google.com
-
-# Actualizar el sistema e instalar dependencias
-RUN apt-get update && apt-get install -y \
-    firefox \
-    x11-apps \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
-
-# Crear un usuario no root
-RUN useradd -ms /bin/bash firefoxuser
-
-# Cambiar a usuario no root
-USER firefoxuser
-WORKDIR /home/firefoxuser
-
-# Comando para ejecutar Firefox
-CMD firefox --kiosk \$LOBBY_URL
 
 "
 ##########SYSTEM FILES#################
@@ -163,7 +128,7 @@ services:
       - "9100:9100/tcp"
 
   ahsvlt:
-    image: ahsvlt
+    image: ainigmagroup/kioskbrowser:1.0
     container_name: ahsvlt_container
     environment:
       - DISPLAY=\${DISPLAY}
@@ -208,20 +173,8 @@ create_script_file "$FILE8" "$SCRIPT_CONTENT8"
 # Print separator for clarity
 echo "--------------------------------"
 
-# Create first script file
-create_script_file "$FILE1" "$SCRIPT_CONTENT1"
-
-# Print separator for clarity
-echo "--------------------------------"
-
 # Create second script file
 create_script_file "$FILE2" "$SCRIPT_CONTENT2"
-
-# Print separator for clarity
-echo "--------------------------------"
-
-# Create second script file
-create_script_file "$FILE3" "$SCRIPT_CONTENT3"
 
 # Print separator for clarity
 echo "--------------------------------"
