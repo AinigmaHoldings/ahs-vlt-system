@@ -128,7 +128,7 @@ services:
       - "9100:9100/tcp"
 
   ahsvlt:
-    image: ainigmagroup/kioskbrowser:1.0
+    image: ainigmagroup/kioskbrowser:5.0
     container_name: ahsvlt_container
     prvileged: true
     environment:
