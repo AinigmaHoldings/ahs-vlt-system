@@ -130,7 +130,7 @@ services:
   ahsvlt:
     image: ainigmagroup/kioskbrowser:5.0
     container_name: ahsvlt_container
-    prvileged: true
+    privileged: true
     environment:
       - DISPLAY=\${DISPLAY}
       - LOBBY_URL=${urlVlt}
