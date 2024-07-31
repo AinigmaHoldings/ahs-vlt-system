@@ -112,7 +112,7 @@ Comment=Printing Env Variables for VLT service"
 FILE7="/home/${USER}/vlt/docker-compose.yml" 
 echo $FILE7
 SCRIPT_CONTENT7="version: '3.8'
-
+ 
 services:
   node_exporter:
     image: quay.io/prometheus/node-exporter:latest
@@ -126,21 +126,25 @@ services:
       - '/:/host:ro,rslave'
     ports:
       - "9100:9100/tcp"
-
+ 
   ahsvlt:
-    image: ainigmagroup/kioskbrowser:5.0
+    image: ainigmagroup/kioskbrowser:6.0
     container_name: ahsvlt_container
     privileged: true
     environment:
       - DISPLAY=\${DISPLAY}
       - LOBBY_URL=${urlVlt}
+      - PULSE_SERVER=unix:\${XDG_RUNTIME_DIR}/pulse/native
     volumes:
       - '/tmp/.X11-unix:/tmp/.X11-unix'
+      - '\${XDG_RUNTIME_DIR}/pulse/native:\${XDG_RUNTIME_DIR}/pulse/native'
+    devices:
+      - /dev/snd:/dev/snd
     command: []
     networks:
       - default
     restart: 'always'   # Adjust restart policy if necessary
-
+ 
   cloudflared:
     image: cloudflare/cloudflared:latest
     network_mode: host
