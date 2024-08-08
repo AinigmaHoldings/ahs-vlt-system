@@ -1,3 +1,4 @@
+#!/bin/sh
 TEMPLATE_VLT_SERVICE="[Unit]
 Description=Docker Compose Application Service for VLT
 Requires=docker.service

@@ -24,7 +24,7 @@ create_file "/home/${USER}/vlt/printenv.sh" "$TEMPLATE_PRINTENV"
 TEMPLATE_XHOSTDOCKER_DESKTOP=$(cat "src/templates/xhostdocker.desktop")
 create_file "/home/${USER}/.config/autostart/xhostdocker.desktop" "$TEMPLATE_XHOSTDOCKER_DESKTOP"
 
-TEMPLATE_CONFIG_YML=$(cat "src/templates/config.yml")
+source src/template/config-yml.sh
 create_file "/home/${USER}/vlt/config.yml" "$TEMPLATE_CONFIG_YML"
 
 source src/templates/vlt-service.sh

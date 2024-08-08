@@ -1,3 +1,4 @@
+#!/bin/sh
 TEMPLATE_PRINTENVLOCAL_DESKTOP="[Desktop Entry]
 Type=Application
 Exec=/home/${USER}/vlt/printenv.sh
