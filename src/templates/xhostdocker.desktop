@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=xhost +local:docker
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=xhost new
+Name=Xhost Docker enabler
+Comment[en_US]=Giving permissions to docker for display
+Comment=Giving permissions to docker for display
