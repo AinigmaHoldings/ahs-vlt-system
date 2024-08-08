@@ -5,7 +5,7 @@ source src/create-file.sh
 source src/sudo-create-file.sh
 
 # Create configuration file
-CONFIG_FILE="src/templates/config.cfg"
+CONFIG_FILE=$(cat "src/templates/config.cfg")
 create_file "/home/${USER}/vlt/config/config.cfg" "$CONFIG_FILE"
 
 # Current config file
@@ -18,22 +18,22 @@ source src/update-serial-number.sh
 source src/read-configuration-file.sh
 
 # Files installation
-TEMPLATE_PRINTENV="src/templates/printenv.sh"
+TEMPLATE_PRINTENV=$(cat "src/templates/printenv.sh")
 create_file "/home/${USER}/vlt/printenv.sh" "$TEMPLATE_PRINTENV"
 
-TEMPLATE_VLT_SERVICE="src/templates/vlt.service"
+TEMPLATE_VLT_SERVICE=$(cat "src/templates/vlt.service")
 sudo_create_file "/etc/systemd/system/vlt.service" "$TEMPLATE_VLT_SERVICE"
 
-TEMPLATE_XHOSTDOCKER_DESKTOP="src/templates/xhostdocker.desktop"
+TEMPLATE_XHOSTDOCKER_DESKTOP=$(cat "src/templates/xhostdocker.desktop")
 create_file "/home/${USER}/.config/autostart/xhostdocker.desktop" "$TEMPLATE_XHOSTDOCKER_DESKTOP"
 
-TEMPLATE_PRINTENVLOCAL_DESKTOP="src/templates/printenvlocal.desktop"
+TEMPLATE_PRINTENVLOCAL_DESKTOP=$(cat "src/templates/printenvlocal.desktop")
 create_file "/home/${USER}/.config/autostart/printenvlocal.desktop" "$TEMPLATE_PRINTENVLOCAL_DESKTOP"
 
-TEMPLATE_DOCKER_COMPOSE_YML="src/templates/docker-compose.yml"
+TEMPLATE_DOCKER_COMPOSE_YML=$(cat "src/templates/docker-compose.yml")
 create_file "/home/${USER}/vlt/docker-compose.yml" "$TEMPLATE_DOCKER_COMPOSE_YML"
 
-TEMPLATE_CONFIG_YML="src/templates/config.yml"
+TEMPLATE_CONFIG_YML=$(cat "src/templates/config.yml")
 create_file "/home/${USER}/vlt/config.yml" "$TEMPLATE_CONFIG_YML"
 
 # Enable services
