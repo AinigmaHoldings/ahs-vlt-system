@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Install docker
-source src/install-docker.sh
-
 # Import functions
 source src/create-file.sh
 source src/sudo-create-file.sh
@@ -43,3 +40,6 @@ create_file "/home/${USER}/vlt/config.yml" "$TEMPLATE_CONFIG_YML"
 echo "Enabling Services in systemd"
 sudo systemctl daemon-reload
 sudo systemctl enable vlt.service
+
+# Install docker
+source src/install-docker.sh
