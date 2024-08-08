@@ -21,20 +21,20 @@ source src/read-configuration-file.sh
 TEMPLATE_PRINTENV=$(cat "src/templates/printenv.sh")
 create_file "/home/${USER}/vlt/printenv.sh" "$TEMPLATE_PRINTENV"
 
-TEMPLATE_VLT_SERVICE=$(cat "src/templates/vlt.service")
-sudo_create_file "/etc/systemd/system/vlt.service" "$TEMPLATE_VLT_SERVICE"
-
 TEMPLATE_XHOSTDOCKER_DESKTOP=$(cat "src/templates/xhostdocker.desktop")
 create_file "/home/${USER}/.config/autostart/xhostdocker.desktop" "$TEMPLATE_XHOSTDOCKER_DESKTOP"
 
-TEMPLATE_PRINTENVLOCAL_DESKTOP=$(cat "src/templates/printenvlocal.desktop")
-create_file "/home/${USER}/.config/autostart/printenvlocal.desktop" "$TEMPLATE_PRINTENVLOCAL_DESKTOP"
-
-TEMPLATE_DOCKER_COMPOSE_YML=$(cat "src/templates/docker-compose.yml")
-create_file "/home/${USER}/vlt/docker-compose.yml" "$TEMPLATE_DOCKER_COMPOSE_YML"
-
 TEMPLATE_CONFIG_YML=$(cat "src/templates/config.yml")
 create_file "/home/${USER}/vlt/config.yml" "$TEMPLATE_CONFIG_YML"
+
+source src/templates/vlt-service.sh
+sudo_create_file "/etc/systemd/system/vlt.service" "$TEMPLATE_VLT_SERVICE"
+
+source src/templates/printenvlocal-desktop.sh
+create_file "/home/${USER}/.config/autostart/printenvlocal.desktop" "$TEMPLATE_PRINTENVLOCAL_DESKTOP"
+
+source src/templates/docker-compose.sh
+create_file "/home/${USER}/vlt/docker-compose.yml" "$TEMPLATE_DOCKER_COMPOSE_YML"
 
 # Enable services
 echo "Enabling Services in systemd"

@@ -1,4 +1,5 @@
-version: '3.8'
+#!/bin/sh
+TEMPLATE_DOCKER_COMPOSE_YML="version: '3.8'
  
 services:
   node_exporter:
@@ -38,3 +39,4 @@ services:
     volumes:
       - './config.yml:/etc/cloudflared/config.yml'
     entrypoint: cloudflared tunnel --config /etc/cloudflared/config.yml run --token $cloudflaredtoken
+"
