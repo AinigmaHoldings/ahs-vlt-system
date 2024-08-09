@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Extract the serial number of the baseboard
 SERIAL_NUMBER=$(sudo dmidecode -t baseboard | grep "Serial Number:" | awk -F: '{print $2}' | xargs)
 

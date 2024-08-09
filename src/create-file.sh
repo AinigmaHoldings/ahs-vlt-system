@@ -1,3 +1,5 @@
+#!/bin/bash
+
 create_file() {
     local FILE="$1"
     local SCRIPT_CONTENT="$2"

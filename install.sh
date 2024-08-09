@@ -1,15 +1,10 @@
 #!/bin/bash
 
-# Input fields
-read -p "VLT Name: " vltName
-read -p "VLT Code: " vltCode
-read -p "Store Id: " storeid
-read -p "Cloudflared Token: " cloudflaredtoken
-read -p "Cloudflared Tunnel Id: " cloudflaredtunnelid
-
 # Import functions
 source src/create-file.sh
 source src/sudo-create-file.sh
+# source src/input-vlt-information.sh
+source src/get-vlt-information.sh
 
 # Create configuration file
 CONFIG_FILE=$(cat "src/templates/config.cfg")
