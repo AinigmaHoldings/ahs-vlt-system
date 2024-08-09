@@ -4,6 +4,7 @@
 source src/create-file.sh
 source src/sudo-create-file.sh
 # source src/input-vlt-information.sh
+source src/get-serial-number.sh
 source src/get-vlt-information.sh
 
 # Create configuration file
