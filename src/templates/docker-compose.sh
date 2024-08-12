@@ -21,7 +21,7 @@ services:
     privileged: true
     environment:
       - DISPLAY=\${DISPLAY}
-      - LOBBY_URL=${urlVlt}
+      - LOBBY_URL=${urlVlt}/landing?vltName=${vltName}&vltCode=${vltCode}&storeId=${storeid}
       - PULSE_SERVER=unix:\${XDG_RUNTIME_DIR}/pulse/native
     volumes:
       - '/tmp/.X11-unix:/tmp/.X11-unix'
