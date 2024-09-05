@@ -44,5 +44,11 @@ echo "Enabling Services in systemd"
 sudo systemctl daemon-reload
 sudo systemctl enable vlt.service
 
+# Install utilities
+sudo apt install -y sed curl openssh-server cockpit
+
+# Update sudo nano /etc/gdm3/custom.conf WaylandEnable=false
+source src/update-gdm3-conf.sh
+
 # Install docker
 source src/install-docker.sh
