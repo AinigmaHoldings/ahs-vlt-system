@@ -7,11 +7,14 @@ services:
     container_name: node_exporter
     command:
       - '--path.rootfs=/host'
+      - '--collector.systemd'
     network_mode: host
     pid: host
     restart: unless-stopped
+    privileged: true
     volumes:
       - '/:/host:ro,rslave'
+      - '/var/run/dbus/system_bus_socket:/var/run/dbus/system_bus_socket'
     ports:
       - "9100:9100/tcp"
  
