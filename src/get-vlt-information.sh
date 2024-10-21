@@ -15,9 +15,9 @@ echo $response
 
 vltName=$(echo "$response" | sed -n 's/.*"vltName": *"\([^"]*\)".*/\1/p')
 vltCode=$(echo "$response" | sed -n 's/.*"vltCode": *"\([^"]*\)".*/\1/p')
-storeid=$(echo "$response" | sed -n 's/.*"storeId": *"\([^"]*\)".*/\1/p')
+storeid=$(echo "$response" | sed -n 's/.*"storeid": *"\([^"]*\)".*/\1/p')
 latitude=$(echo "$response" | sed -n 's/.*"latitude": *"\([^"]*\)".*/\1/p')
 longitude=$(echo "$response" | sed -n 's/.*"longitude": *"\([^"]*\)".*/\1/p')
 opco=$(echo "$response" | sed -n 's/.*"opco": *"\([^"]*\)".*/\1/p')
-cloudflaredtoken=$(echo "$response" | sed -n 's/.*"cloudflaredToken": *"\([^"]*\)".*/\1/p')
-cloudflaredtunnelid=$(echo "$response" | sed -n 's/.*"cloudflaredTunnelId": *"\([^"]*\)".*/\1/p')
+cloudflaredtoken=$(echo "$response" | sed -n 's/.*"cloudflaredtoken": *"\([^"]*\)".*/\1/p')
+cloudflaredtunnelid=$(echo "$response" | sed -n 's/.*"cloudlfaredtunnelid": *"\([^"]*\)".*/\1/p')
