@@ -1,7 +1,7 @@
 #!/bin/bash
-
+vltCode=$1
 # Datos JSON que quieres enviar
-data='{"vltSerialBoard": "'$SERIAL_NUMBER'"}'
+data='{"vltSerialBoard": "'$SERIAL_NUMBER'","vltCode": "'$vltCode'"}'
 
 # Realiza una solicitud POST a una API con datos en el cuerpo y guarda la respuesta en una variable
 response=$(curl -s -X POST "https://4wmo907g8g.execute-api.us-east-1.amazonaws.com/default/vltTokenService" \

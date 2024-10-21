@@ -1,4 +1,14 @@
 #!/bin/bash
+# Guardar el input proporcionado como parámetro
+VLTCODE=$1
+
+# Verificar si se ha proporcionado un input
+if [ -n "$VLTCODE" ]; then
+    echo "El valor del input es: $VLTCODE"
+else
+    echo "Error: VLT Code missing"
+    exit 1
+fi
 
 # Import functions
 source src/create-file.sh
