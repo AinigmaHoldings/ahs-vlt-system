@@ -3,11 +3,15 @@ vltCode=$1
 # Datos JSON que quieres enviar
 data='{"vltSerialBoard": "'$SERIAL_NUMBER'","vltCode": "'$vltCode'"}'
 
+echo $data
+
 # Realiza una solicitud POST a una API con datos en el cuerpo y guarda la respuesta en una variable
 response=$(curl -s -X POST "https://4wmo907g8g.execute-api.us-east-1.amazonaws.com/default/vltTokenService" \
     -H "x-api-key: SJEIrlPFYs228YNrTbmNe4ocVWEKkvQB13k1Dlvd" \
     -H "Content-Type: application/json" \
     -d "$data")
+
+echo $response
 
 vltName=$(echo "$response" | sed -n 's/.*"vltName": *"\([^"]*\)".*/\1/p')
 vltCode=$(echo "$response" | sed -n 's/.*"vltCode": *"\([^"]*\)".*/\1/p')

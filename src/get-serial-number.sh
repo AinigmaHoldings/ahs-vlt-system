@@ -5,6 +5,6 @@ SERIAL_NUMBER=$(sudo dmidecode -t baseboard | grep "Serial Number:" | awk -F: '{
 
 # Check if a serial number was found
 if [ -z "$SERIAL_NUMBER" ]; then
-    echo "Serial number not found."
-    exit 1
+    echo "Serial number not found. Assigning DEFAULT"
+    SERIAL_NUMBER="DEFAULTSN"
 fi

@@ -9,13 +9,14 @@ else
     echo "Error: VLT Code missing"
     exit 1
 fi
-
+echo "Continua"
 # Import functions
 source src/create-file.sh
 source src/sudo-create-file.sh
 # source src/input-vlt-information.sh
 source src/get-serial-number.sh
-source src/get-vlt-information.sh
+echo "Extracting VLT Information for VLT: $VLTCODE"
+source src/get-vlt-information.sh $VLTCODE
 
 # Create configuration file
 CONFIG_FILE=$(cat "src/templates/config.cfg")
