@@ -13,6 +13,13 @@ response=$(curl -s -X POST "https://4wmo907g8g.execute-api.us-east-1.amazonaws.c
 
 echo $response
 
+# Verifica si el response contiene solo el status "Installed"
+status=$(echo "$response" | sed -n 's/.*"status": *"\([^"]*\)".*/\1/p')
+if [[ "$status" == "Installed" ]]; then
+    echo "El estado es 'Installed'. Terminando el script."
+    exit 0
+fi
+
 vltName=$(echo "$response" | sed -n 's/.*"vltName": *"\([^"]*\)".*/\1/p')
 vltCode=$(echo "$response" | sed -n 's/.*"vltCode": *"\([^"]*\)".*/\1/p')
 storeid=$(echo "$response" | sed -n 's/.*"storeid": *"\([^"]*\)".*/\1/p')
