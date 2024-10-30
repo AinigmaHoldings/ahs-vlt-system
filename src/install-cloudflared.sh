@@ -1,3 +1,6 @@
+echo "Gathering Cloudflared Token Input"
+cloudflaredToken=$1
+echo $cloudflaredToken
 echo "Uninstall cloudflared, expect some errors..."
 sudo systemctl disable cloudflared.service
 sudo apt-get remove -y --purge cloudflared
@@ -11,4 +14,4 @@ echo "Installing cloudflared, do not expect errors"
 curl -L --output cloudflared.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
 sudo dpkg -i cloudflared.deb
  
-sudo cloudflared service install
+sudo cloudflared service install $cloudflaredToken
