@@ -22,6 +22,7 @@ source src/get-vlt-information.sh $VLTCODE
 
 # Install cloudflared
 source src/install-cloudflared.sh $cloudflaredtoken
+exit 0
 
 # Create configuration file
 CONFIG_FILE=$(cat "src/templates/config.cfg")
