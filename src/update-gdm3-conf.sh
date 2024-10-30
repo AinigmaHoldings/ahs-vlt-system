@@ -5,4 +5,4 @@ config_file="/etc/gdm3/custom.conf"
 
 # Add 'WaylandEnable=false' at the end of file
 #echo "WaylandEnable=false" | sudo tee -a "$config_file"
-sed -i 's/^#WaylandEnable=false/WaylandEnable=false/' "$config_file"
+sudo sed -i 's/^#WaylandEnable=false/WaylandEnable=false/' "$config_file"
