@@ -15,3 +15,4 @@ curl -L --output cloudflared.deb https://github.com/cloudflare/cloudflared/relea
 sudo dpkg -i cloudflared.deb
  
 sudo cloudflared service install $cloudflaredToken
+echo "HOLA AMIGOS"
