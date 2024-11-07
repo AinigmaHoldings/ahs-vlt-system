@@ -1,7 +1,7 @@
 config_file_autoupgrade="/etc/apt/apt.conf.d/20auto-upgrades"
 template_file_autoupgrade="src/templates/20auto-upgrades"
 
-sudo cp $template_file_custom $config_file
+sudo cp $template_file_autoupgrade $config_file_autoupgrade
 
 sudo systemctl disable --now unattended-upgrades 
 sudo apt remove unattended-upgrades
