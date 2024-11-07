@@ -22,7 +22,7 @@ source src/get-vlt-information.sh $VLTCODE
 
 # Install cloudflared
 source src/install-cloudflared.sh $cloudflaredtoken
-exit 0
+#exit 0
 
 # Create configuration file
 CONFIG_FILE=$(cat "src/templates/config.cfg")
@@ -64,8 +64,17 @@ sudo systemctl enable vlt.service
 # Install utilities
 sudo apt install -y sed curl openssh-server cockpit
 
-# Update sudo nano /etc/gdm3/custom.conf WaylandEnable=false
+# Update sudo nano /etc/gdm3/custom.conf WaylandEnable=false and enabling automatic login
 source src/update-gdm3-conf.sh
+
+# Disabling autoupdates and screensaver
+source src/disable-autoupdates.sh
+
+# Deactivating automatic updates
+
+# Changing hostname
+
+# Disabling automatic login
 
 # Install docker
 source src/install-docker.sh
