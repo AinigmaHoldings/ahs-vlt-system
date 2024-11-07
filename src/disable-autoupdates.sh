@@ -1,3 +1,4 @@
+echo "Disabling auto upgrades and screensaver"
 config_file_autoupgrade="/etc/apt/apt.conf.d/20auto-upgrades"
 template_file_autoupgrade="src/templates/20auto-upgrades"
 
