@@ -11,6 +11,10 @@ else
 fi
 echo "Continua"
 
+# Cambia hostname
+
+ sudo hostnamectl set-hostname $VLTCODE
+
 # Import functions
 source src/create-file.sh
 source src/sudo-create-file.sh
