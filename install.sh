@@ -74,6 +74,9 @@ source src/update-gdm3-conf.sh
 # Disabling autoupdates and screensaver
 source src/disable-autoupdates.sh
 
+# Disable gnome-gestures
+source src/disable-gnome-gestures.sh
+
 # Deactivating automatic updates
 
 # Changing hostname
