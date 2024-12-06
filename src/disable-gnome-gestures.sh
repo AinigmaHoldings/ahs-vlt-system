@@ -6,7 +6,7 @@ PATCH_DIR="$HOME/vlt/.patch"
 
 # Create the directory if it doesn't exist
 mkdir -p "$EXT_DIR"
-mdkir -p "$PATCH_DIR"
+mkdir -p "$PATCH_DIR"
 # Create metadata.json with the provided content
 cat > "$EXT_DIR/metadata.json" <<EOL
 {
