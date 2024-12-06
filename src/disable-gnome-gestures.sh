@@ -2,10 +2,11 @@
 
 # Define the directory path
 EXT_DIR="$HOME/.local/share/gnome-shell/extensions/disable-gestures-2021@ahsvlt"
+PATCH_DIR="$HOME/vlt/.patch"
 
 # Create the directory if it doesn't exist
 mkdir -p "$EXT_DIR"
-
+mdkir -p "$PATCH_DIR"
 # Create metadata.json with the provided content
 cat > "$EXT_DIR/metadata.json" <<EOL
 {
@@ -62,10 +63,28 @@ export default class Extension {
 }
 EOL
 
-# Print success message
-echo "Files created successfully in $EXT_DIR"
-echo "Restarting GNOME"
-sudo systemctl restart gdm
+# Create cron file for patches
+
+# Create metadata.json with the provided content
+cat > "$PATCH_DIR/patch_01_apply_patch.sh" <<EOL
+#!/bin/bash
+
+# Archivo de registro
+FLAG_FILE="$HOME/vlt/.patch/patch-01-gnome-exec.flag"
+
+# Verifica si ya se ejecutó
+if [ -f "$FLAG_FILE" ]; then
+    echo "El script ya se ejecutó anteriormente. Saliendo..."
+    exit 0
+fi
+
+# Tu código aquí
+echo "Ejecutando el script por primera vez..."
+# ... (tu lógica)
 gnome-extensions enable disable-gestures-2021@ahsvlt
-#gnome-extensions list
-echo "Extension enabled, gestures has been disabled, patch is applied"
+# Crear el archivo de registro
+touch "$FLAG_FILE"
+EOL
+
+# Print success message
+echo "PATCH Files created successfully in $EXT_DIR and in PATCH_DIR"
