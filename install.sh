@@ -75,7 +75,7 @@ source src/update-gdm3-conf.sh
 source src/disable-autoupdates.sh
 
 # Disable gnome-gestures
-# source src/disable-gnome-gestures.sh
+source src/disable-gnome-gestures.sh
 
 # Deactivating automatic updates
 
