@@ -70,20 +70,19 @@ cat > "$PATCH_DIR/patch_01_apply_patch.sh" <<EOL
 #!/bin/bash
 
 # Archivo de registro
-FLAG_FILE="$HOME/vlt/.patch/patch-01-gnome-exec.flag"
+FLAG_FILE="\$HOME/vlt/.patch/patch-01-gnome-exec.flag"
 
 # Verifica si ya se ejecutó
-if [ -f "$FLAG_FILE" ]; then
+if [ -f "\$FLAG_FILE" ]; then
     echo "El script ya se ejecutó anteriormente. Saliendo..."
     exit 0
 fi
 
 # Tu código aquí
 echo "Ejecutando el script por primera vez..."
-# ... (tu lógica)
 gnome-extensions enable disable-gestures-2021@ahsvlt
 # Crear el archivo de registro
-touch "$FLAG_FILE"
+touch "\$FLAG_FILE"
 EOL
 
 # Create crontab file
