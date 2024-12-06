@@ -86,5 +86,29 @@ gnome-extensions enable disable-gestures-2021@ahsvlt
 touch "$FLAG_FILE"
 EOL
 
+# Create crontab file
+
+#!/bin/bash
+
+# Definir la nueva tarea de cron
+NEW_CRON="@reboot $HOME/vlt/.patch/patch_01_apply_patch.sh >> $HOME/vlt/.patch/patch_01_apply_patch.log"
+
+# Guardar la crontab existente en un archivo temporal
+crontab -l > mycron || echo "" > mycron
+
+# Comprobar si la tarea ya existe para evitar duplicados
+if ! grep -Fxq "$NEW_CRON" mycron; then
+    # Agregar la nueva tarea al archivo
+    echo "$NEW_CRON" >> mycron
+    # Instalar la nueva crontab
+    crontab mycron
+    echo "cron File for PATCH created"
+else
+    echo "Task already on crontab"
+fi
+
+# Limpiar el archivo temporal
+rm -f mycron
+
 # Print success message
 echo "PATCH Files created successfully in $EXT_DIR and in PATCH_DIR"
