@@ -1,0 +1,44 @@
+# Configuración de xscreensaver
+
+timeout: 0:07:00
+cycle: 0:00:00
+lock: False
+visualID: default
+installColormap: True
+verbose: False
+splash: False
+splashDuration: 0:00:05
+nice: 10
+memoryLimit: 0
+fade: False
+unfade: False
+fadeSeconds: 0:01:00
+fadeTicks: 20
+dpmsEnabled: True
+dpmsQuickOff: False
+dpmsStandby: 2:00:00
+dpmsSuspend: 2:00:00
+dpmsOff: 4:00:00
+grabDesktopImages: False
+grabVideoFrames: False
+chooseRandomImages: False
+imageDirectory: /usr/share/backgrounds
+
+# Modo de selección del salvapantallas:
+# random, blank, one, o nombre del programa
+mode: one
+selected: 0
+
+# Programas individuales para los salvapantallas
+programs:  \
+  mpv --volume=70 --really-quiet --no-stop-screensaver      \
+    --fs --wid=$XSCREENSAVER_WINDOW           \
+    --loop=inf --shuffle                      \
+    --ytdl-format="bestvideo[height<=1080]"   \
+    /home/ahsvlt/vltscreens.mp4
+
+# Opciones adicionales
+textMode: file
+textLiteral: "XScreenSaver configurado en Ubuntu"
+textFile: ~/.xscreensaver-text
+textProgram: fortune
