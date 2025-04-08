@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=xscreensaver -no-splash
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=VLT Screensaver
+Name=VLT Screensaver
+Comment[en_US]=Screensaver for VLT
+Comment=Screensaver for VLT
